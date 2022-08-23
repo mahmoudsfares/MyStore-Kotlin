@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/drawable/ic_baseline_shopping_basket_24.xml" value="0.196" />
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/fragment_splash.xml" value="0.36666666666666664" />
       </map>
