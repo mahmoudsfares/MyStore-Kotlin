@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.mystore_kt.ui.splash.SplashFragment"
+        android:name="com.example.mystore_kt.ui.home.HomeFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" />
+        tools:layout="@layout/fragment_home" />
 </navigation>
