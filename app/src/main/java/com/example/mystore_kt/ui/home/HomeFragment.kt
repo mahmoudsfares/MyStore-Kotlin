@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var productsAdapter: ProductsAdapter
-    private val dummyProduct = Product(1, "iPhone 11", "", 29.5)
+    private val dummyProduct = listOf(Product(1, "iPhone 11", "u", 29.5))
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,6 +24,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         productsAdapter = ProductsAdapter(
             onProductClicked = {}
         )
+        productsAdapter.submitList(dummyProduct)
 
         binding.productsRv.apply {
             adapter = productsAdapter

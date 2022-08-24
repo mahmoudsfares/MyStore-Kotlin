@@ -17,43 +17,42 @@
             android:padding="16dp">
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/image"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/productName"
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:text="iPhone 11"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                app:layout_constraintStart_toEndOf="@+id/image"
+                app:layout_constraintTop_toTopOf="@+id/image" />
 
             <TextView
-                android:id="@+id/productPrice"
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="32dp"
                 android:text="29.5EGP"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-                app:layout_constraintStart_toStartOf="@+id/productName"
-                app:layout_constraintTop_toBottomOf="@+id/productName" />
+                app:layout_constraintBottom_toBottomOf="@+id/image"
+                app:layout_constraintStart_toStartOf="@+id/name"
+                app:layout_constraintTop_toBottomOf="@+id/name" />
 
             <ImageView
-                android:id="@+id/imageView3"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/productPrice"
+                app:layout_constraintBottom_toBottomOf="@+id/price"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/productName"
+                app:layout_constraintTop_toTopOf="@+id/name"
                 app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

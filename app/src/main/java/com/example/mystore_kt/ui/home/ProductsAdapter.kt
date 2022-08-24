@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mystore_kt.R
 import com.example.mystore_kt.data.Product
 import com.example.mystore_kt.databinding.ProductListItemBinding
+import com.squareup.picasso.Picasso
 
 class ProductsAdapter(
     private val onProductClicked: (Product) -> Unit
@@ -48,7 +50,13 @@ class ProductsAdapter(
         }
 
         fun bind(product: Product) {
-            binding.productName.text = product.name
+            binding.apply {
+                Picasso.get().load(product.mainImageUrl)
+                    .placeholder(R.drawable.img_not_available)
+                    .into(image)
+                name.text = product.name
+                price.text = "${product.price}"
+            }
         }
     }
 
