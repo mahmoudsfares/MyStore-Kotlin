@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mystore_kt.R
 import com.example.mystore_kt.data.Product
@@ -13,6 +14,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
+
+    private val viewModel by viewModels<HomeViewModel>()
 
     private lateinit var productsAdapter: ProductsAdapter
     private val dummyProduct = listOf(Product(1, "iPhone 11", "u", 29.5))

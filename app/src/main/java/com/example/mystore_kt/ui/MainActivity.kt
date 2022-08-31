@@ -1,11 +1,10 @@
-package com.example.mystore_kt
+package com.example.mystore_kt.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.mystore_kt.ui.MainViewModel
+import com.example.mystore_kt.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
