@@ -1,4 +1,4 @@
-package com.example.mystore_kt.ui.home
+package com.example.mystore_kt.ui.products
 
 import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.example.mystore_kt.networking.RetrofitInterface
-import com.example.mystore_kt.ui.home.paging.ProductsPagingSource
+import com.example.mystore_kt.ui.products.paging.ProductsPagingSource
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,7 +20,7 @@ private const val PAGE_SIZE = 10
 private const val MAX_SIZE = 30
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val retrofitInterface: RetrofitInterface) : ViewModel(){
+class ProductsViewModel @Inject constructor(private val retrofitInterface: RetrofitInterface) : ViewModel(){
 
     private val productsChannel = Channel<Boolean>()
     private val productsFlow = productsChannel.receiveAsFlow()

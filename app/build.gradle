@@ -10,6 +10,12 @@ plugins {
 android {
     compileSdk 32
 
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+
     defaultConfig {
         applicationId "com.example.mystore_kt"
         minSdk 21

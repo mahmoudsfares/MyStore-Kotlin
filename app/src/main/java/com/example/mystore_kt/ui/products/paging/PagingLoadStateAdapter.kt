@@ -1,4 +1,4 @@
-package com.example.mystore_kt.ui.home.paging
+package com.example.mystore_kt.ui.products.paging
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package com.example.mystore_kt.ui.home.paging
+package com.example.mystore_kt.ui.products.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -14,7 +14,7 @@ class ProductsPagingSource(
     private val searchQuery: String
 ) : PagingSource<Int, Product>() {
 
-    //Responsible for loading data from API using Retrofit
+    // Responsible for loading data from API using Retrofit
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
         val currentPage = params.key
             ?: STARTING_PAGE_INDEX // key will be null at the very beginning, so we set it to 1
@@ -26,9 +26,9 @@ class ProductsPagingSource(
                 prevKey = if (currentPage == STARTING_PAGE_INDEX) null else currentPage - 1,
                 nextKey = if (products.isEmpty()) null else currentPage + 1
             )
-        } catch (exception: IOException) { //No internet connection
+        } catch (exception: IOException) {
             LoadResult.Error(exception)
-        } catch (exception: HttpException) { //catches server errors
+        } catch (exception: HttpException) {
             LoadResult.Error(exception)
         }
     }

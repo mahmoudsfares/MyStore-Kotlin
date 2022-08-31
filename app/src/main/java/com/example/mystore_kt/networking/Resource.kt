@@ -1,4 +1,4 @@
-package com.example.mystore_kt.data
+package com.example.mystore_kt.networking
 
 sealed class Resource<T>(
     val data: T? = null,

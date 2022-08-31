@@ -7,7 +7,23 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.mystore_kt.ui.home.HomeFragment"
+        android:name="com.example.mystore_kt.ui.products.ProductsFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_products" >
+        <action
+            android:id="@+id/action_splashFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.example.mystore_kt.ui.product_details.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" >
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+        <argument
+            android:name="productName"
+            app:argType="string" />
+    </fragment>
 </navigation>
