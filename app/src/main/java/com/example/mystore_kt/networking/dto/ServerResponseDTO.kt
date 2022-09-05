@@ -5,5 +5,5 @@ data class ServerResponseDTO<T>(
     @SerializedName("error")
     val error: String?,
     @SerializedName("data")
-    val data: T?
+    val data: T
 )

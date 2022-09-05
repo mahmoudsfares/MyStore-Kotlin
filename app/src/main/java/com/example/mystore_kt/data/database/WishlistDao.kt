@@ -20,7 +20,7 @@ interface WishlistDao {
     suspend fun insert(item: WishlistItem)
 
     @Insert
-    suspend fun insert(listUpdatedWishlist: List<WishlistItem>)
+    suspend fun insert(items: List<WishlistItem>)
 
     @Query("DELETE FROM wishlist_table")
     suspend fun clear()
