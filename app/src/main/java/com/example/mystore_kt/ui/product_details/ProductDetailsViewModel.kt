@@ -2,7 +2,7 @@ package com.example.mystore_kt.ui.product_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mystore_kt.data.DetailedProduct
+import com.example.mystore_kt.data.pojo.DetailedProduct
 import com.example.mystore_kt.networking.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

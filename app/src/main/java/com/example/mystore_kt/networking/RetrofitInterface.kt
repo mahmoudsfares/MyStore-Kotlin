@@ -1,7 +1,7 @@
 package com.example.mystore_kt.networking
 
-import com.example.mystore_kt.data.DetailedProduct
-import com.example.mystore_kt.data.Product
+import com.example.mystore_kt.data.pojo.DetailedProduct
+import com.example.mystore_kt.data.pojo.Product
 import com.example.mystore_kt.networking.dto.ServerResponseDTO
 import retrofit2.http.GET
 import retrofit2.http.Path

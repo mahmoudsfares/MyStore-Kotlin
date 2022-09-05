@@ -2,7 +2,7 @@ package com.example.mystore_kt.ui.product_details
 
 import android.content.Context
 import com.example.mystore_kt.R
-import com.example.mystore_kt.data.DetailedProduct
+import com.example.mystore_kt.data.pojo.DetailedProduct
 import com.example.mystore_kt.networking.Resource
 import com.example.mystore_kt.networking.RetrofitInterface
 import dagger.hilt.android.qualifiers.ApplicationContext

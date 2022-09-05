@@ -2,7 +2,7 @@ package com.example.mystore_kt.ui.products.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.mystore_kt.data.Product
+import com.example.mystore_kt.data.pojo.Product
 import com.example.mystore_kt.networking.RetrofitInterface
 import retrofit2.HttpException
 import java.io.IOException

@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mystore_kt.R
-import com.example.mystore_kt.data.Product
+import com.example.mystore_kt.data.pojo.Product
 import com.example.mystore_kt.databinding.FragmentProductsBinding
 import dagger.hilt.android.AndroidEntryPoint
 

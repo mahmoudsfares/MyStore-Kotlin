@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mystore_kt.R
-import com.example.mystore_kt.data.Product
+import com.example.mystore_kt.data.pojo.Product
 import com.example.mystore_kt.databinding.ProductListItemBinding
 import com.squareup.picasso.Picasso
 

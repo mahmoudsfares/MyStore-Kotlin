@@ -1,6 +1,6 @@
 package com.example.mystore_kt.product_details
 
-import com.example.mystore_kt.data.DetailedProduct
+import com.example.mystore_kt.data.pojo.DetailedProduct
 import com.example.mystore_kt.networking.RetrofitInterface
 import com.example.mystore_kt.ui.product_details.ProductDetailsRepo
 import kotlinx.coroutines.runBlocking

@@ -1,4 +1,4 @@
-package com.example.mystore_kt.data
+package com.example.mystore_kt.data.pojo
 
 import com.google.gson.annotations.SerializedName
 
