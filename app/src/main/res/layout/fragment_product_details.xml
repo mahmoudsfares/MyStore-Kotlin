@@ -51,8 +51,26 @@
             android:src="@drawable/ic_in_wishlist"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/cartPb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/cartBtn"
+            app:layout_constraintEnd_toEndOf="@+id/cartBtn"
+            app:layout_constraintStart_toStartOf="@+id/cartBtn"
+            app:layout_constraintTop_toTopOf="@+id/cartBtn"
             />
+
+        <ProgressBar
+            android:id="@+id/wishlistPb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/wishlistIcon"
+            app:layout_constraintEnd_toEndOf="@+id/wishlistIcon"
+            app:layout_constraintStart_toStartOf="@+id/wishlistIcon"
+            app:layout_constraintTop_toTopOf="@+id/wishlistIcon" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

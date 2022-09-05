@@ -2,16 +2,19 @@ package com.example.mystore_kt.ui.product_details
 
 import android.content.Context
 import com.example.mystore_kt.R
+import com.example.mystore_kt.data.database.AppDatabase
 import com.example.mystore_kt.data.pojo.DetailedProduct
 import com.example.mystore_kt.networking.Resource
 import com.example.mystore_kt.networking.RetrofitInterface
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
 class ProductDetailsRepo @Inject constructor(
     private val retrofitInterface: RetrofitInterface,
+    private val db: AppDatabase,
     @ApplicationContext private val context: Context
 ){
     suspend fun getProductDetails(id: Int): Resource<DetailedProduct> {
@@ -28,5 +31,13 @@ class ProductDetailsRepo @Inject constructor(
                 else -> Resource.Error(context.getString(R.string.unexpected_error))
             }
         }
+    }
+
+    fun isItemInCart(itemId: Int): Flow<Boolean> {
+        return db.getCartDao().isItemInCart(itemId)
+    }
+
+    fun isItemInWishlist(itemId: Int): Flow<Boolean> {
+        return db.getWishlistDao().isItemInWishlist(itemId)
     }
 }

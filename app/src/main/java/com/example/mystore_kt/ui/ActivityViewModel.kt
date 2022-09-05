@@ -95,7 +95,7 @@ class ActivityViewModel @Inject constructor(private val repo: ActivityRepo) : Vi
     private val syncFavouritesTriggerChannel = Channel<WishlistItem?>()
     private val syncFavouritesTrigger = syncFavouritesTriggerChannel.receiveAsFlow()
 
-    val syncFavouritesStatus: Flow<Resource<List<WishlistItem>?>?> =
+    val syncWishlistStatus: Flow<Resource<List<WishlistItem>?>?> =
         syncFavouritesTrigger.flatMapLatest {
             repo.syncWishlist(it, userId!!)
         }
@@ -108,7 +108,7 @@ class ActivityViewModel @Inject constructor(private val repo: ActivityRepo) : Vi
         }
     }
 
-    fun addToFavourites(wishlistItem: WishlistItem) {
+    fun addToWishlist(wishlistItem: WishlistItem) {
         wishlistItem.actionOnItem = ActionOnItem.ADD
         if (userId == null) {
             viewModelScope.launch {
