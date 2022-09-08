@@ -6,11 +6,13 @@ import com.example.mystore_kt.data.pojo.ActionOnItem
 import com.example.mystore_kt.data.pojo.CartItem
 import com.example.mystore_kt.data.pojo.DetailedProduct
 import com.example.mystore_kt.networking.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class ProductDetailsViewModel @Inject constructor(private val repo: ProductDetailsRepo): ViewModel() {
 
     private val _productDetails = MutableStateFlow<Resource<DetailedProduct>>(Resource.Loading())

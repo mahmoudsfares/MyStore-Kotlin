@@ -17,7 +17,9 @@ import com.example.mystore_kt.databinding.FragmentProductDetailsBinding
 import com.example.mystore_kt.networking.Resource
 import com.example.mystore_kt.ui.ActivityViewModel
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
 
     private val viewModel: ProductDetailsViewModel by viewModels()
@@ -80,7 +82,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
 
         //--------------- CART ---------------//
 
-        // bind item state in cart to the add to cart button
+        // bind item state in databse to the add to cart button
         lifecycleScope.launchWhenStarted {
             viewModel.isItemInCart.collect {
                 val isInCart = it ?: return@collect
@@ -132,7 +134,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
 
         //--------------- WISHLIST ---------------//
 
-        // bind item state in cart to the add to wishlist icon
+        // bind item state in database to the add to wishlist icon
         lifecycleScope.launchWhenStarted {
             viewModel.isItemInWishlist.collect {
                 val result = it ?: return@collect
@@ -172,7 +174,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
                 item.name,
                 item.mainImageUrl
             )
-            if (viewModel.isItemInCart.value!!) {
+            if (viewModel.isItemInWishlist.value!!) {
                 activityViewModel.removeFromWishlist(wishlistItem)
             } else {
                 activityViewModel.addToWishlist(wishlistItem)

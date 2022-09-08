@@ -1,6 +1,9 @@
 package com.example.mystore_kt.di
 
+import android.app.Application
+import androidx.room.Room
 import com.example.mystore_kt.BuildConfig
+import com.example.mystore_kt.data.database.AppDatabase
 import com.example.mystore_kt.networking.RetrofitInterface
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -58,4 +61,10 @@ object Module {
     fun provideRetrofitInterface(retrofit: Retrofit): RetrofitInterface =
         retrofit.create(RetrofitInterface::class.java)
 
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Application): AppDatabase =
+        Room.databaseBuilder(app, AppDatabase::class.java, "app_db")
+            .fallbackToDestructiveMigration()
+            .build()
 }

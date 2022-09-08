@@ -6,12 +6,14 @@ import com.example.mystore_kt.data.pojo.ActionOnItem
 import com.example.mystore_kt.data.pojo.CartItem
 import com.example.mystore_kt.data.pojo.WishlistItem
 import com.example.mystore_kt.networking.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class ActivityViewModel @Inject constructor(private val repo: ActivityRepo) : ViewModel() {
     private val _isLoading = MutableStateFlow(true)
     val isLoading = _isLoading.asStateFlow()
