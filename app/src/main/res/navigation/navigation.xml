@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.mystore_kt.ui.products.ProductsFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_products" >
+        android:label="My Store"
+        tools:layout="@layout/fragment_products">
         <action
             android:id="@+id/action_splashFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.example.mystore_kt.ui.product_details.ProductDetailsFragment"
-        android:label="fragment_product_details"
+        android:label="{productName}"
         tools:layout="@layout/fragment_product_details" >
         <argument
             android:name="productId"
