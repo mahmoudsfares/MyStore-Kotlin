@@ -34,15 +34,14 @@
         android:textColor="@color/black"
         tools:text="Title" />
 
-    <ImageView
+    <include
         android:id="@+id/cart_action"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        layout="@layout/cart_badge"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cart" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
