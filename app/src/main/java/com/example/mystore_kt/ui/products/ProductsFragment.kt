@@ -1,23 +1,15 @@
 package com.example.mystore_kt.ui.products
 
-import android.opengl.Visibility
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mystore_kt.R
 import com.example.mystore_kt.data.pojo.Product
-import com.example.mystore_kt.databinding.ActivityMainBinding
 import com.example.mystore_kt.databinding.FragmentProductsBinding
 import dagger.hilt.android.AndroidEntryPoint
 

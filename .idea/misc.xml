@@ -13,11 +13,13 @@
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/drawable/img_not_available.xml" value="0.3185" />
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/cart_badge.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/fragment_cart.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/fragment_product_details.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/fragment_products.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/fragment_splash.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/home_search.xml" value="0.365625" />
+        <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/item_cart.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/paging_error.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/product_list_item.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/MyStore/app/src/main/res/layout/progress_bar_error_txt_retry_btn.xml" value="0.36666666666666664" />
