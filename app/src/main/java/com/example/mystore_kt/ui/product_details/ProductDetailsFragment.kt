@@ -9,9 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.mystore_kt.R
 import com.example.mystore_kt.data.pojo.CartItem
+import com.example.mystore_kt.data.pojo.DetailedProduct
+import com.example.mystore_kt.data.pojo.Product
 import com.example.mystore_kt.data.pojo.WishlistItem
 import com.example.mystore_kt.databinding.FragmentProductDetailsBinding
 import com.example.mystore_kt.networking.Resource
@@ -31,53 +34,93 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentProductDetailsBinding.bind(view)
 
-        viewModel.getProductDetails(args.productId)
-
-        lifecycleScope.launchWhenStarted {
-            viewModel.productDetails.collect {
-                binding.apply {
-                    when (it) {
-                        is Resource.Loading -> {
-                            networkUi.apply {
-                                progressBar.isVisible = true
-                                error.isVisible = false
-                                retryBtn.isVisible = false
-                            }
-                            image.isVisible = false
-                            data.isVisible = false
-                            actions.isVisible = false
-                        }
-                        is Resource.Success -> {
-                            networkUi.apply {
-                                progressBar.isVisible = false
-                                error.isVisible = false
-                                retryBtn.isVisible = false
-                            }
-                            viewModel.startIsItemInCartFlow(args.productId)
-                            viewModel.startIsItemInFavouritesFlow(args.productId)
-                            image.isVisible = true
-                            data.isVisible = true
-                            actions.isVisible = true
-                            Picasso.get().load(it.data!!.mainImageUrl)
-                                .placeholder(R.drawable.img_not_available)
-                                .into(image)
-                            price.text = "Price: ${it.data.price}"
-                            description.text = it.data.description
-                        }
-                        is Resource.Error -> {
-                            networkUi.apply {
-                                progressBar.isVisible = false
-                                error.isVisible = true
-                                retryBtn.isVisible = true
-                            }
-                            image.isVisible = false
-                            data.isVisible = false
-                            actions.isVisible = false
-                        }
-                    }
+        //------------------- TEST --------------------//
+        val product = DetailedProduct(1, "iPhone 11", "really good phone", "u", listOf("u"), 29.5)
+        binding.toolbar.apply {
+            toolbarTitle.text = product.name
+            toolbarBack.setOnClickListener { activity?.onBackPressed() }
+            cartAction.btnOpenCart.setOnClickListener {
+                findNavController().navigate(ProductDetailsFragmentDirections.actionProductDetailsFragmentToCartFragment())
+            }
+            activityViewModel.cartItemsCount.observe(viewLifecycleOwner) {
+                if (it == null || it == 0) {
+                    cartAction.countBadge.visibility = View.INVISIBLE
+                } else {
+                    cartAction.countBadge.visibility = View.VISIBLE
+                    cartAction.countBadge.text = "$it"
                 }
             }
         }
+        viewModel.test(product)
+        binding.apply {
+            networkUi.apply {
+                progressBar.isVisible = false
+                error.isVisible = false
+                retryBtn.isVisible = false
+            }
+            cartPb.visibility = View.INVISIBLE
+            wishlistPb.visibility = View.INVISIBLE
+            viewModel.startIsItemInCartFlow(args.productId)
+            viewModel.startIsItemInFavouritesFlow(args.productId)
+            image.isVisible = true
+            data.isVisible = true
+            actions.isVisible = true
+            Picasso.get().load(product.mainImageUrl)
+                .placeholder(R.drawable.img_not_available)
+                .into(image)
+            price.text = "Price: ${product.price}"
+            description.text = product.description
+        }
+        //----------------------------------------------//
+
+
+//        viewModel.getProductDetails(args.productId)
+//
+//        lifecycleScope.launchWhenStarted {
+//            viewModel.productDetails.collect {
+//                binding.apply {
+//                    when (it) {
+//                        is Resource.Loading -> {
+//                            networkUi.apply {
+//                                progressBar.isVisible = true
+//                                error.isVisible = false
+//                                retryBtn.isVisible = false
+//                            }
+//                            image.isVisible = false
+//                            data.isVisible = false
+//                            actions.isVisible = false
+//                        }
+//                        is Resource.Success -> {
+//                            networkUi.apply {
+//                                progressBar.isVisible = false
+//                                error.isVisible = false
+//                                retryBtn.isVisible = false
+//                            }
+//                            viewModel.startIsItemInCartFlow(args.productId)
+//                            viewModel.startIsItemInFavouritesFlow(args.productId)
+//                            image.isVisible = true
+//                            data.isVisible = true
+//                            actions.isVisible = true
+//                            Picasso.get().load(it.data!!.mainImageUrl)
+//                                .placeholder(R.drawable.img_not_available)
+//                                .into(image)
+//                            price.text = "Price: ${it.data.price}"
+//                            description.text = it.data.description
+//                        }
+//                        is Resource.Error -> {
+//                            networkUi.apply {
+//                                progressBar.isVisible = false
+//                                error.isVisible = true
+//                                retryBtn.isVisible = true
+//                            }
+//                            image.isVisible = false
+//                            data.isVisible = false
+//                            actions.isVisible = false
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
 
         //--------------- CART ---------------//

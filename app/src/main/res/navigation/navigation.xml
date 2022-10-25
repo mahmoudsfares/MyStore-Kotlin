@@ -3,16 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/productsFragment">
 
     <fragment
-        android:id="@+id/splashFragment"
+        android:id="@+id/productsFragment"
         android:name="com.example.mystore_kt.ui.products.ProductsFragment"
         android:label="My Store"
         tools:layout="@layout/fragment_products">
         <action
-            android:id="@+id/action_splashFragment_to_productDetailsFragment"
+            android:id="@+id/action_productsFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
@@ -25,5 +28,12 @@
         <argument
             android:name="productName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.mystore_kt.ui.cart.CartFragment"
+        android:label="CartFragment" />
 </navigation>

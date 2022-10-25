@@ -19,6 +19,12 @@ class ProductDetailsViewModel @Inject constructor(private val repo: ProductDetai
     val productDetails: StateFlow<Resource<DetailedProduct>>
         get() = _productDetails
 
+    fun test(detailedProduct: DetailedProduct){
+        _productDetails.value = Resource.Success(DetailedProduct(1, "iPhone 11", "really good phone", "u", listOf("u"), 29.5))
+        startIsItemInCartFlow(1)
+        startIsItemInFavouritesFlow(1)
+    }
+
     fun getProductDetails(id: Int){
         _productDetails.value = Resource.Loading()
         viewModelScope.launch {
