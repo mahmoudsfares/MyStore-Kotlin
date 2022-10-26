@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -13,7 +14,6 @@ import com.example.mystore_kt.R
 import com.example.mystore_kt.data.pojo.Product
 import com.example.mystore_kt.databinding.FragmentProductsBinding
 import com.example.mystore_kt.ui.ActivityViewModel
-import com.example.mystore_kt.ui.product_details.ProductDetailsFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,6 +28,8 @@ class ProductsFragment : Fragment(R.layout.fragment_products) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentProductsBinding.bind(view)
+
+        // Toolbar and Drawer
 
         binding.toolbar.apply {
             cartAction.btnOpenCart.setOnClickListener {
@@ -44,6 +46,19 @@ class ProductsFragment : Fragment(R.layout.fragment_products) {
                 }
             }
         }
+
+        binding.toolbar.toolbarMenu.setOnClickListener {
+            binding.drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        if (activityViewModel.userId == null){
+            binding.drawer.inflateHeaderView(R.layout.drawer_logged_out)
+        } else {
+            binding.drawer.inflateHeaderView(R.layout.drawer_logged_in)
+        }
+
+        //-----------------------------------------------------------------------------//
+
 
         productsAdapter = ProductsAdapter(
             onProductClicked = {

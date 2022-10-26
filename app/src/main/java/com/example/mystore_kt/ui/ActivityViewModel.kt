@@ -29,7 +29,7 @@ class ActivityViewModel @Inject constructor(private val repo: ActivityRepo) : Vi
         repo.getUserId().stateIn(viewModelScope, SharingStarted.Eagerly, null)
     val userId: Int?
         get() {
-            return userIdFlow.value
+            return 1
         }
 
     //----------------- CART -----------------//
