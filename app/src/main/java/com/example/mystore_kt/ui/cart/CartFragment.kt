@@ -62,12 +62,12 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             changeQuantity = { cartItem -> activityViewModel.changeQuantityInCart(cartItem) }
         )
 
-        binding.cartRv.setHasFixedSize(true)
         binding.cartRv.adapter = adapter
         val layoutManager = LinearLayoutManager(context)
         val dividerItemDecoration =
             DividerItemDecoration(binding.cartRv.context, layoutManager.orientation)
         binding.cartRv.addItemDecoration(dividerItemDecoration)
+        binding.cartRv.layoutManager = layoutManager
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.cartItems.collect {
@@ -81,7 +81,6 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                         retryBtn.visibility = View.INVISIBLE
                     }
                 } else {
-                    binding.cartRv.layoutManager = layoutManager
                     adapter.submitList(it)
                     binding.cartItemsLayout.visibility = View.VISIBLE
                     binding.networkUi.root.visibility = View.GONE
