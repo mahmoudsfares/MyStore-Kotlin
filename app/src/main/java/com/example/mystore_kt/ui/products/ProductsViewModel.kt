@@ -22,22 +22,20 @@ private const val MAX_SIZE = 30
 @HiltViewModel
 class ProductsViewModel @Inject constructor(private val retrofitInterface: RetrofitInterface) : ViewModel(){
 
-    private val productsChannel = Channel<Boolean>()
-    private val productsFlow = productsChannel.receiveAsFlow()
     private var searchQuery = ""
 
+    private val productsTriggerChannel = Channel<Boolean>()
+    fun getProducts(searchQuery: String) {
+        this.searchQuery = searchQuery
+        viewModelScope.launch {
+            productsTriggerChannel.send(true)
+        }
+    }
+    private val productsFlow = productsTriggerChannel.receiveAsFlow()
     val products = productsFlow.flatMapLatest {
         Pager(
             config = PagingConfig(PAGE_SIZE, MAX_SIZE, false),
             pagingSourceFactory = { ProductsPagingSource(retrofitInterface, searchQuery) }
         ).flow.cachedIn(viewModelScope)
     }.stateIn(viewModelScope, SharingStarted.Lazily, null)
-
-    fun getProducts(searchQuery: String) {
-        this.searchQuery = searchQuery
-        viewModelScope.launch {
-            productsChannel.send(true)
-        }
-    }
-
 }
