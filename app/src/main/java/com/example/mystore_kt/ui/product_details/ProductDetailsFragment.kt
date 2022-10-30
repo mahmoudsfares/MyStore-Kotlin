@@ -14,7 +14,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.mystore_kt.R
 import com.example.mystore_kt.data.pojo.CartItem
 import com.example.mystore_kt.data.pojo.DetailedProduct
-import com.example.mystore_kt.data.pojo.Product
 import com.example.mystore_kt.data.pojo.WishlistItem
 import com.example.mystore_kt.databinding.FragmentProductDetailsBinding
 import com.example.mystore_kt.networking.Resource
@@ -60,8 +59,8 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
             }
             cartPb.visibility = View.INVISIBLE
             wishlistPb.visibility = View.INVISIBLE
-            viewModel.startIsItemInCartFlow(args.productId)
-            viewModel.startIsItemInFavouritesFlow(args.productId)
+            viewModel.checkItemInCart(args.productId)
+            viewModel.checkItemInFavourites(args.productId)
             image.isVisible = true
             data.isVisible = true
             actions.isVisible = true
