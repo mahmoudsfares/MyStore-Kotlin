@@ -28,6 +28,7 @@ class ActivityRepo @Inject constructor(
 
     fun countItemsInCart(): LiveData<Int> = db.getCartDao().getCartItemsCount()
 
+    /// sync user cart on servers with the local cart
     suspend fun syncCart(cartItem: CartItem?, userId: Int): Flow<Resource<List<CartItem>?>>{
         return flow {
             emit(Resource.Loading())
@@ -42,49 +43,37 @@ class ActivityRepo @Inject constructor(
                     is HttpException -> emit(Resource.Error(appContext.getString(R.string.server_error)))
                     is IOException -> emit(Resource.Error(appContext.getString(R.string.no_internet_connection)))
                     else -> emit(
-                        Resource.Error(
-                            throwable.localizedMessage ?: appContext.getString(
+                        Resource.Error(throwable.localizedMessage ?: appContext.getString(
                                 R.string.error_loading_data
-                            )
-                        )
+                            ))
                     )
                 }
             }
         }
     }
 
+    /// sync user wishlist on servers with the local wishlist
     suspend fun syncWishlist(wishlistItem: WishlistItem?, userId: Int): Flow<Resource<List<WishlistItem>?>>{
         return flow {
             emit(Resource.Loading())
             wishlistItem?.userId = userId
             try {
-                val listUpdatedWishlist: List<WishlistItem> =
-                    retrofitInterface.syncWishlist(listOf(wishlistItem)).data
+                val listUpdatedWishlist: List<WishlistItem> = retrofitInterface.syncWishlist(listOf(wishlistItem)).data
                 db.getWishlistDao().clear()
                 db.getWishlistDao().insert(listUpdatedWishlist)
                 emit(Resource.Success(listUpdatedWishlist))
             } catch (throwable: Throwable) {
                 when (throwable) {
-                    is HttpException -> emit(
-                        Resource.Error(
-                            appContext.getString(
+                    is HttpException -> emit(Resource.Error(appContext.getString(
                                 R.string.server_error
-                            )
-                        )
-                    )
-                    is IOException -> emit(
-                        Resource.Error(
-                            appContext.getString(
+                            )))
+                    is IOException -> emit(Resource.Error(appContext.getString(
                                 R.string.no_internet_connection
-                            )
-                        )
-                    )
+                            )))
                     else -> emit(
-                        Resource.Error(
-                            throwable.localizedMessage ?: appContext.getString(
+                        Resource.Error(throwable.localizedMessage ?: appContext.getString(
                                 R.string.error_loading_data
-                            )
-                        )
+                            ))
                     )
                 }
             }

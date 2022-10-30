@@ -15,36 +15,35 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ActivityViewModel @Inject constructor(private val repo: ActivityRepo) : ViewModel() {
+
+    // this is used for splash screen
     private val _isLoading = MutableStateFlow(true)
     val isLoading = _isLoading.asStateFlow()
-
     init {
         viewModelScope.launch {
             delay(3000)
             _isLoading.value = false
         }
     }
+    //--------- end-splash ---------//
 
-    private val userIdFlow: StateFlow<Int?> =
-        repo.getUserId().stateIn(viewModelScope, SharingStarted.Eagerly, null)
+
+    // retrieved as a flow because it's saved in the datastore, logout and login will be observed
+    private val _userId: StateFlow<Int?> = repo.getUserId().stateIn(viewModelScope, SharingStarted.Lazily, null)
     val userId: Int?
         get() {
-            return userIdFlow.value
+            return _userId.value
         }
+    //--------- end-user ---------//
+
 
     //----------------- CART -----------------//
-
+    // this doesn't need to be triggered except once when the app starts
     val cartItemsCount = repo.countItemsInCart()
 
+    // used as a trigger because cart is synced from different places and is also refreshed
     private val syncCartTriggerChannel = Channel<CartItem?>()
-    private val syncCartTrigger = syncCartTriggerChannel.receiveAsFlow()
-
-    val syncCartStatus: Flow<Resource<List<CartItem>?>?> =
-        syncCartTrigger.flatMapLatest {
-            repo.syncCart(it, userId!!)
-        }
-
-
+    /// triggers the flow and passes the repo method parameter (cart item)
     fun syncCart(cartItem: CartItem?) {
         if (userId != null) {
             viewModelScope.launch {
@@ -52,6 +51,15 @@ class ActivityViewModel @Inject constructor(private val repo: ActivityRepo) : Vi
             }
         }
     }
+    // convert the channel to flow
+    private val syncCartFlow = syncCartTriggerChannel.receiveAsFlow()
+    // the state flow that is observed and stores the hottest value of the flow
+    // stateIn: converts the cold flow to hot state flow
+    val syncCartStatus: StateFlow<Resource<List<CartItem>?>?> =
+        syncCartFlow.flatMapLatest {
+            repo.syncCart(it, userId!!)
+        }.stateIn(viewModelScope, SharingStarted.Lazily, null)
+
 
     fun addToCart(cartItem: CartItem) {
         cartItem.actionOnItem = ActionOnItem.ADD
@@ -95,20 +103,19 @@ class ActivityViewModel @Inject constructor(private val repo: ActivityRepo) : Vi
     //----------------- WISHLIST -----------------//
 
     private val syncFavouritesTriggerChannel = Channel<WishlistItem?>()
-    private val syncFavouritesTrigger = syncFavouritesTriggerChannel.receiveAsFlow()
-
-    val syncWishlistStatus: Flow<Resource<List<WishlistItem>?>?> =
-        syncFavouritesTrigger.flatMapLatest {
-            repo.syncWishlist(it, userId!!)
-        }
-
-    fun syncWishlist(wishlistItem: WishlistItem) {
+    private fun syncWishlist(wishlistItem: WishlistItem) {
         if (userId != null) {
             viewModelScope.launch {
                 syncFavouritesTriggerChannel.send(wishlistItem)
             }
         }
     }
+    private val syncFavouritesFlow = syncFavouritesTriggerChannel.receiveAsFlow()
+    val syncWishlistStatus: Flow<Resource<List<WishlistItem>?>?> =
+        syncFavouritesFlow.flatMapLatest {
+            repo.syncWishlist(it, userId!!)
+        }
+
 
     fun addToWishlist(wishlistItem: WishlistItem) {
         wishlistItem.actionOnItem = ActionOnItem.ADD
