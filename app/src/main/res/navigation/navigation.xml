@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_productsFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_loggedOutFragment"
+            app:destination="@id/loggedOutFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
@@ -31,9 +34,35 @@
         <action
             android:id="@+id/action_productDetailsFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_loggedOutFragment"
+            app:destination="@id/loggedOutFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.example.mystore_kt.ui.cart.CartFragment"
-        android:label="CartFragment" />
+        android:label="CartFragment" >
+        <action
+            android:id="@+id/action_cartFragment_to_loggedOutFragment"
+            app:destination="@id/loggedOutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loggedOutFragment"
+        android:name="com.example.mystore_kt.ui.logged_out.LoggedOutFragment"
+        android:label="LoggedOutFragment" >
+        <action
+            android:id="@+id/action_loggedOutFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_loggedOutFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.mystore_kt.ui.login.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.mystore_kt.ui.signup.SignupFragment"
+        android:label="SignupFragment" />
 </navigation>

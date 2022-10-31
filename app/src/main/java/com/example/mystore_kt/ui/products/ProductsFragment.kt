@@ -13,7 +13,6 @@ import com.example.mystore_kt.R
 import com.example.mystore_kt.data.pojo.Product
 import com.example.mystore_kt.databinding.FragmentProductsBinding
 import com.example.mystore_kt.ui.ActivityViewModel
-import com.example.mystore_kt.ui.product_details.ProductDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
