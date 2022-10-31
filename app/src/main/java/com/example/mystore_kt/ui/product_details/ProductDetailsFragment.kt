@@ -50,7 +50,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
                 }
             }
         }
-        viewModel.test(product)
+        viewModel.test()
         binding.apply {
             networkUi.apply {
                 progressBar.isVisible = false
@@ -124,7 +124,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
 
         //--------------- CART ---------------//
 
-        // bind item state in databse to the add to cart button
+        // bind item state in database to the add to cart button
         lifecycleScope.launchWhenStarted {
             viewModel.isItemInCart.collect {
                 val isInCart = it ?: return@collect
