@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mystore_kt.R
@@ -13,6 +14,7 @@ import com.example.mystore_kt.databinding.FragmentCartBinding
 import com.example.mystore_kt.networking.Resource
 import com.example.mystore_kt.ui.ActivityViewModel
 import com.example.mystore_kt.ui.cart.fragments.CartAdapter
+import com.example.mystore_kt.ui.product_details.ProductDetailsFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,10 +27,23 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentCartBinding.bind(view)
 
-        binding.toolbar.toolbarBack.setOnClickListener {
-            activity?.onBackPressed()
+        binding.toolbar.apply {
+            toolbarProfile.setOnClickListener {
+                if (activityViewModel.userId == null) {
+                    findNavController().navigate(
+                        CartFragmentDirections.actionCartFragmentToLoggedOutFragment()
+                    )
+                } else {
+                    //TODO: profile
+                }
+            }
+            toolbarBack.setOnClickListener {
+                activity?.onBackPressedDispatcher!!.onBackPressed()
+            }
+            toolbarTitle.text = "Cart"
         }
-        binding.toolbar.toolbarTitle.text = "Cart"
+
+
 
         activityViewModel.syncCart(null)
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {

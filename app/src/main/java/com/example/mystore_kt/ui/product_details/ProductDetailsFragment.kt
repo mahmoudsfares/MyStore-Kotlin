@@ -18,6 +18,7 @@ import com.example.mystore_kt.data.pojo.WishlistItem
 import com.example.mystore_kt.databinding.FragmentProductDetailsBinding
 import com.example.mystore_kt.networking.Resource
 import com.example.mystore_kt.ui.ActivityViewModel
+import com.example.mystore_kt.ui.products.ProductsFragmentDirections
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,11 +36,21 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
 
         //------------------- TEST --------------------//
         val product = DetailedProduct(1, "iPhone 11", "really good phone", "u", listOf("u"), 29.5)
+
         binding.toolbar.apply {
             toolbarTitle.text = product.name
-            toolbarBack.setOnClickListener { activity?.onBackPressed() }
+            toolbarBack.setOnClickListener { activity?.onBackPressedDispatcher!!.onBackPressed() }
             cartAction.btnOpenCart.setOnClickListener {
                 findNavController().navigate(ProductDetailsFragmentDirections.actionProductDetailsFragmentToCartFragment())
+            }
+            toolbarProfile.setOnClickListener {
+                if (activityViewModel.userId == null) {
+                    findNavController().navigate(
+                        ProductDetailsFragmentDirections.actionProductDetailsFragmentToLoggedOutFragment()
+                    )
+                } else {
+                    //TODO: profile
+                }
             }
             activityViewModel.cartItemsCount.observe(viewLifecycleOwner) {
                 if (it == null || it == 0) {

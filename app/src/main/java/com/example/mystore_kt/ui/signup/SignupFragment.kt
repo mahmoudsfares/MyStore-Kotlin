@@ -17,7 +17,7 @@ class SignupFragment : Fragment(R.layout.fragment_signup) {
         binding.toolbar.apply {
             toolbarTitle.text = "Signup"
             toolbarBack.setOnClickListener {
-                requireActivity().onBackPressed()
+                activity?.onBackPressedDispatcher!!.onBackPressed()
             }
         }
         binding.signupBtn.setOnClickListener {

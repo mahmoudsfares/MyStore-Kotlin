@@ -18,7 +18,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.toolbar.apply {
             toolbarTitle.text = "Login"
             toolbarBack.setOnClickListener {
-                requireActivity().onBackPressed()
+                activity?.onBackPressedDispatcher!!.onBackPressed()
             }
         }
         binding.loginBtn.setOnClickListener {
