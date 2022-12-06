@@ -34,6 +34,11 @@ class ProductsFragment : Fragment(R.layout.fragment_products) {
                     ProductsFragmentDirections.actionProductsFragmentToCartFragment()
                 )
             }
+            toolbarProfile.setOnClickListener {
+                findNavController().navigate(
+                    ProductsFragmentDirections.actionProductsFragmentToLoggedOutFragment()
+                )
+            }
             activityViewModel.cartItemsCount.observe(viewLifecycleOwner) {
                 if (it == null || it == 0) {
                     cartAction.countBadge.visibility = View.INVISIBLE
